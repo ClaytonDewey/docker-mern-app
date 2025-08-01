@@ -1,8 +1,8 @@
 const getEnv = (key: string, defaultValue?: string): string => {
-  const value = (process.env[key] = defaultValue);
+  const value = process.env[key] || defaultValue;
 
   if (value === undefined) {
-    throw new Error(`Missing environment variable ${key}`);
+    throw Error(`Missing String environment variable for ${key}`);
   }
 
   return value;
