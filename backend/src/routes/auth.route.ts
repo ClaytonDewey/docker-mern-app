@@ -7,3 +7,6 @@ const authRoutes = Router();
 authRoutes.post('/register', registerHandler);
 
 export default authRoutes;
+/**
+ * https://youtu.be/NR2MJk9C1Js?si=wd82qz7VbRbVR-Iy - 1:25:35
+ */
