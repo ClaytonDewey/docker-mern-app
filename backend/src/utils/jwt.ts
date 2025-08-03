@@ -47,7 +47,6 @@ export const verifyToken = <TPayload extends object = AccessTokenPayload>(
   const { secret = JWT_SECRET, ...verifyOpts } = options || {};
   try {
     const payload = jwt.verify(token, secret, {
-      ...defaults,
       ...verifyOpts,
     }) as TPayload;
     return {
