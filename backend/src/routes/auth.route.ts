@@ -1,13 +1,15 @@
 import { Router } from 'express';
-import { registerHandler, loginHandler } from '../controllers/auth.controller';
+import {
+  registerHandler,
+  loginHandler,
+  logoutHandler,
+} from '../controllers/auth.controller';
 
 const authRoutes = Router();
 
 // prefix: /auth
 authRoutes.post('/register', registerHandler);
 authRoutes.post('/login', loginHandler);
+authRoutes.get('/logout', logoutHandler);
 
 export default authRoutes;
-/**
- * https://youtu.be/NR2MJk9C1Js?si=wd82qz7VbRbVR-Iy - 1:25:35
- */
