@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import { hashValue, compareValue } from '../utils/bcrypt';
+import { compareValue, hashValue } from '../utils/bcrypt';
 
 export interface UserDocument extends mongoose.Document {
   email: string;
@@ -16,7 +16,7 @@ export interface UserDocument extends mongoose.Document {
 
 const userSchema = new mongoose.Schema<UserDocument>(
   {
-    email: { type: String, unique: true, required: true },
+    email: { type: String, required: true, unique: true },
     password: { type: String, required: true },
     verified: { type: Boolean, required: true, default: false },
   },
@@ -31,7 +31,7 @@ userSchema.pre('save', async function (next) {
   }
 
   this.password = await hashValue(this.password);
-  next();
+  return next();
 });
 
 userSchema.methods.comparePassword = async function (val: string) {
