@@ -20,3 +20,6 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     </ChakraProvider>
   </React.StrictMode>
 );
+/**
+ * https://youtu.be/NR2MJk9C1Js?si=wd82qz7VbRbVR-Iy - 3:58:50
+ */

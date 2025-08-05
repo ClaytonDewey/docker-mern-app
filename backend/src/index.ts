@@ -40,6 +40,3 @@ app.listen(PORT, async () => {
   console.log(`Server is running on port ${PORT} in ${NODE_ENV} environment`);
   await connectToDatabase();
 });
-/**
- * https://youtu.be/NR2MJk9C1Js?si=wd82qz7VbRbVR-Iy - 1:25:35
- */
