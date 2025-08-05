@@ -14,7 +14,10 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       <QueryClientProvider client={queryClient}>
         <BrowserRouter>
           <App />
-          <ReactQueryDevtools position='top-right' initialIsOpen={false} />
+          <ReactQueryDevtools
+            buttonPosition='bottom-right'
+            initialIsOpen={false}
+          />
         </BrowserRouter>
       </QueryClientProvider>
     </ChakraProvider>
