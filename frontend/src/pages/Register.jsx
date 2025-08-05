@@ -72,7 +72,7 @@ const Register = () => {
             <FormControl id='confirmPassword'>
               <FormLabel>Confirm Password</FormLabel>
               <Input
-                type='confirmPassword'
+                type='password'
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
                 onKeyDown={(e) =>
