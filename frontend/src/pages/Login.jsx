@@ -11,12 +11,28 @@ import {
   Stack,
   Text,
 } from '@chakra-ui/react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
+import { useMutation } from '@tanstack/react-query';
+import { login } from '../lib/api';
 
 const Login = () => {
+  const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
+  const {
+    mutate: signIn,
+    isPending,
+    isError,
+  } = useMutation({
+    mutationFn: login,
+    onSuccess: () => {
+      navigate('/', {
+        replace: true,
+      });
+    },
+  });
 
   return (
     <Flex minH='100vh' align='center' justify='center'>
@@ -25,6 +41,11 @@ const Login = () => {
           Sign into your account
         </Heading>
         <Box rounded='lg' bg='gray.700' boxShadow='lg' p={8}>
+          {isError && (
+            <Box mb={3} color='red.400'>
+              Invalid email of password
+            </Box>
+          )}
           <Stack spacing={4}>
             <FormControl id='email'>
               <FormLabel>Email address</FormLabel>
@@ -41,6 +62,9 @@ const Login = () => {
                 type='password'
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
+                onKeyDown={(e) =>
+                  e.key === 'Enter' && signIn({ email, password })
+                }
               />
             </FormControl>
 
@@ -54,7 +78,11 @@ const Login = () => {
               }}>
               Forgot password?
             </ChakraLink>
-            <Button my={2} isDisabled={!email || password.length < 8}>
+            <Button
+              my={2}
+              isDisabled={!email || password.length < 8}
+              isLoading={isPending}
+              onClick={() => signIn({ email, password })}>
               Sign in
             </Button>
             <Text align='ceter' fontSize='sm' color='text.muted'>
