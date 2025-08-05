@@ -24,5 +24,5 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   </React.StrictMode>
 );
 /**
- * https://youtu.be/NR2MJk9C1Js?si=wd82qz7VbRbVR-Iy - 3:58:50
+ * https://youtu.be/J2dB96MUL8s?si=3pz6s0tBl05rv-kh - Deployment video next
  */
