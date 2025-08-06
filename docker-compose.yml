@@ -3,8 +3,6 @@ name: mern-app
 services:
   mongo:
     image: mongo:7.0.12
-    ports:
-      - 27017:27017
     volumes:
       - mongo_data:/data/db
     networks:
@@ -20,6 +18,25 @@ services:
       - /app/node_modules
     ports:
       - 4004:4004
+    depends_on:
+      - mongo
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: DockerFile
+    restart: unless-stopped
+    env_file: ./frontend/.env
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    networks:
+      - mern-app
+    ports:
+      - 5173:5173
+    command: npm run dev -- --host
+    depends_on:
+      - api
 
 volumes:
   mongo_data:
