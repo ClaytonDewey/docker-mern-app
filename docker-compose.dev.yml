@@ -32,8 +32,12 @@ services:
         VITE_API_URL: https://api.auth.localhost
     restart: unless-stopped
     env_file: ./frontend/.env
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
     networks:
       - mern-app
+    command: npm run dev -- --host
     depends_on:
       - api
 
