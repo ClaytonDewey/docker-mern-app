@@ -1,5 +1,5 @@
 # Only used in production
-FROM caddy:2-builder
+FROM caddy:2-builder AS builder
 
 RUN xcaddy build \
     --with github.com/mholt/caddy-ratelimit
